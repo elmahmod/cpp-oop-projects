@@ -15,12 +15,14 @@ private:
     enum enMode
     {
         EmptyMode = 0,
-        UpdateMode
+        UpdateMode,
+        AddNewMode
     };
     enMode _mode;
     string _accountNumber;
     string _pinCode;
     double _balance;
+    bool _markedForDelete = false;
 
     static clsBankClient _convertLineToClientObject(string line, string separator = "#//#")
     {
@@ -54,7 +56,8 @@ private:
         {
             for (clsBankClient &client : vClients)
             {
-                file << _convertClientObjectToLine(client) << endl;
+                if (!client._markedForDelete)
+                    file << _convertClientObjectToLine(client) << endl;
             }
             file.close();
         }
@@ -100,6 +103,26 @@ private:
         }
     }
 
+    void _addNew()
+    {
+        _addDataLineToFile(_convertClientObjectToLine(*this));
+    }
+
+    void _addDataLineToFile(string dataLine)
+    {
+        ofstream file(clientsFile, ios::app);
+
+        if (file.is_open())
+        {
+            file << dataLine << endl;
+            file.close();
+        }
+        else
+        {
+            cout << "\nfile not found\n";
+        }
+    }
+
 public:
     clsBankClient(enMode mode, string firstName, string lastName, string email, string phone, string accountNumber, string pinCode, double balance)
         : clsPerson(firstName, lastName, email, phone)
@@ -136,7 +159,7 @@ public:
         cout << "\nEmail       : " << getEmail();
         cout << "\nPhone       : " << getPhone();
         cout << "\nAcc. Number : " << _accountNumber;
-        cout << "\nPassword    : " << _pinCode;
+        cout << "\nPin Code    : " << _pinCode;
         cout << "\nBalance     : " << _balance;
         cout << "\n___________________\n";
     }
@@ -202,21 +225,60 @@ public:
     enum enSaveResult
     {
         svFailedEmptyObject = 0,
-        svSucceeded
+        svSucceeded,
+        svFailedClientExists
     };
 
     enSaveResult save()
     {
         switch (_mode)
         {
-            case EmptyMode:
-                return svFailedEmptyObject;
-            case UpdateMode:
+        case EmptyMode:
+            return svFailedEmptyObject;
+
+        case UpdateMode:
+        {
+            _update();
+            return svSucceeded;
+        }
+
+        case AddNewMode:
+        {
+            if (isClientExist(_accountNumber))
             {
-                _update();
+                return svFailedClientExists;
+            }
+            else
+            {
+                _addNew();
+                _mode = UpdateMode;
                 return svSucceeded;
             }
         }
+        }
+
+        return svFailedEmptyObject;
     }
 
+    static clsBankClient getAddNewClient(string accountNumber)
+    {
+        return clsBankClient(AddNewMode, "", "", "", "", accountNumber, "", 0);
+    }
+
+    bool Delete()
+    {
+        vector<clsBankClient> vClients = _loadClientsFile();
+
+        for (clsBankClient &client : vClients)
+        {
+            if (client._accountNumber == this->_accountNumber)
+            {
+                client._markedForDelete = true;
+                _saveClientObjectToFile(vClients);
+                client = _getEmptyClientObject();
+                return true;
+            }
+        }
+        return false;
+    }
 }; // finish line
