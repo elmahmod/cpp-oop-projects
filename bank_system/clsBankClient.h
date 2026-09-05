@@ -123,6 +123,12 @@ private:
         }
     }
 
+    // is empty?
+    bool isEmpty()
+    {
+        return _mode == EmptyMode;
+    }
+
 public:
     clsBankClient(enMode mode, string firstName, string lastName, string email, string phone, string accountNumber, string pinCode, double balance)
         : clsPerson(firstName, lastName, email, phone)
@@ -141,12 +147,6 @@ public:
     string getAccountNumber() { return _accountNumber; } // read only
     string getPinCode() { return _pinCode; }
     double getBalance() { return _balance; }
-
-    // is empty?
-    bool isEmpty()
-    {
-        return _mode == EmptyMode;
-    }
 
     // print data
     void print()
