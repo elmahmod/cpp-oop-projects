@@ -33,6 +33,73 @@ private:
         return clsBankClient(enMode::EmptyMode, "", "", "", "", "", "", 0);
     }
 
+    static string _convertClientObjectToLine(clsBankClient client, string separator = "#//#")
+    {
+        string line = "";
+        line = client.getFirstName() + separator;
+        line += client.getLastName() + separator;
+        line += client.getEmail() + separator;
+        line += client.getPhone() + separator;
+        line += client.getAccountNumber() + separator;
+        line += client.getPinCode() + separator;
+        line += to_string(client.getBalance());
+        return line;
+    }
+
+    static void _saveClientObjectToFile(vector<clsBankClient> vClients)
+    {
+        ofstream file(clientsFile);
+
+        if (file.is_open())
+        {
+            for (clsBankClient &client : vClients)
+            {
+                file << _convertClientObjectToLine(client) << endl;
+            }
+            file.close();
+        }
+        else
+        {
+            cout << "\nfile not found\n";
+        }
+    }
+
+    static vector<clsBankClient> _loadClientsFile()
+    {
+        vector<clsBankClient> vClients;
+        ifstream file(clientsFile);
+
+        if (file.is_open())
+        {
+            string line = "";
+            while (getline(file, line))
+            {
+                vClients.push_back(_convertLineToClientObject(line));
+            }
+            file.close();
+        }
+        else
+        {
+            cout << "\nfile not found\n";
+        }
+        return vClients;
+    }
+
+    void _update()
+    {
+        vector<clsBankClient> vClients = _loadClientsFile();
+
+        for (clsBankClient &client : vClients)
+        {
+            if (client.getAccountNumber() == this->_accountNumber)
+            {
+                client = *this;
+                _saveClientObjectToFile(vClients);
+                return;
+            }
+        }
+    }
+
 public:
     clsBankClient(enMode mode, string firstName, string lastName, string email, string phone, string accountNumber, string pinCode, double balance)
         : clsPerson(firstName, lastName, email, phone)
@@ -129,6 +196,27 @@ public:
     {
         clsBankClient client = find(accountNumber);
         return !client.isEmpty();
+    }
+
+    // save result
+    enum enSaveResult
+    {
+        svFailedEmptyObject = 0,
+        svSucceeded
+    };
+
+    enSaveResult save()
+    {
+        switch (_mode)
+        {
+            case EmptyMode:
+                return svFailedEmptyObject;
+            case UpdateMode:
+            {
+                _update();
+                return svSucceeded;
+            }
+        }
     }
 
 }; // finish line

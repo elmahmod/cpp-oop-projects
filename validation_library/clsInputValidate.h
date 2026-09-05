@@ -71,4 +71,12 @@ public:
         }
         return number;
     }
-};
+
+    // read string
+    static string readString(const string &message)
+    {
+        string s;
+        getline(cin >> ws, s);
+        return s;
+    }
+};  

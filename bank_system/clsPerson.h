@@ -20,7 +20,7 @@ public:
     }
 
     // set
-    void setFristName(string firstName) { _firstName = firstName; }
+    void setFirstName(string firstName) { _firstName = firstName; }
     void setLastName(string lastName) { _lastName = lastName; }
     void setEmail(string email) { _email = email; }
     void setPhone(string phone) { _phone = _phone; }

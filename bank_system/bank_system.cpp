@@ -1,15 +1,56 @@
 #include <iostream>
 #include "clsBankClient.h"
+#include "validation_library/clsInputValidate.h"
 using namespace std;
+
+void readClientInfo(clsBankClient &client)
+{
+    client.setFirstName(clsInputValidate::readString("Enter First Name: "));
+    client.setLastName(clsInputValidate::readString("Enter Last Name: "));
+    client.setEmail(clsInputValidate::readString("Enter Email: "));
+    client.setPhone(clsInputValidate::readString("Enter Phone: "));
+    client.setPinCode(clsInputValidate::readString("Enter Pin Code: "));
+    client.setBalance(clsInputValidate::readDblNumber("Enter Balance: "));
+}
+
+void updateClient()
+{
+
+    string accountNumber = clsInputValidate::readString("Please enter client account number: ");
+
+    while (!clsBankClient::isClientExist(accountNumber))
+    {
+        accountNumber = clsInputValidate::readString("account number is not found, choose another one: ");
+    }
+
+    clsBankClient client = clsBankClient::find(accountNumber);
+    client.print();
+
+    cout << "\n\nUpdate Client Info:";
+    cout << "\n_____________________\n";
+
+    readClientInfo(client);
+
+    switch (client.save())
+    {
+    case clsBankClient::enSaveResult::svSucceeded:
+    {
+        cout << "\naccount updated successfully\n";
+        client.print();
+        break;
+    }
+    case clsBankClient::enSaveResult::svFailedEmptyObject:
+    {
+        cout << "\nError account was not saved bacause it's empty\n";
+        break;
+    }
+    default:
+        break;
+    }
+}
 
 int main()
 {
-    clsBankClient client = clsBankClient::find("A101");
-    client.print();
-
-    clsBankClient client2 = clsBankClient::find("A101", "123454");
-    client2.print();
-
-    cout << clsBankClient::isClientExist("A101") << endl;
+    updateClient();
     return 0;
 }
