@@ -67,7 +67,7 @@ private:
         }
     }
 
-    static vector<clsBankClient> _loadClientsFile()
+    static vector<clsBankClient> _loadClientsDataFromFile()
     {
         vector<clsBankClient> vClients;
         ifstream file(clientsFile);
@@ -90,7 +90,7 @@ private:
 
     void _update()
     {
-        vector<clsBankClient> vClients = _loadClientsFile();
+        vector<clsBankClient> vClients = _loadClientsDataFromFile();
 
         for (clsBankClient &client : vClients)
         {
@@ -267,7 +267,7 @@ public:
 
     bool Delete()
     {
-        vector<clsBankClient> vClients = _loadClientsFile();
+        vector<clsBankClient> vClients = _loadClientsDataFromFile();
 
         for (clsBankClient &client : vClients)
         {
@@ -280,5 +280,10 @@ public:
             }
         }
         return false;
+    }
+
+    static vector<clsBankClient> getClientsList()
+    {
+        return _loadClientsDataFromFile();
     }
 }; // finish line
