@@ -42,5 +42,6 @@ int main()
     myDblLinkedList.insertAtEnd(6);
     myDblLinkedList.printList();
 
+    cout << "\nSize: " << myDblLinkedList.size() << endl;
     return 0;
 }

@@ -16,6 +16,7 @@ public:
 
 private:
     Node *head = nullptr;
+    int _size = 0;
 
 public:
     ~clsDbLinkedList()
@@ -39,6 +40,8 @@ public:
         if (head != nullptr)
             head->prev = newNode;
         head = newNode;
+
+        _size++;
     }
 
     Node *find(T value)
@@ -68,6 +71,8 @@ public:
             currentNode->next->prev = newNode;
 
         currentNode->next = newNode;
+
+        _size++;
     }
 
     void insertAtEnd(T value)
@@ -91,6 +96,8 @@ public:
         newNode->prev = lastNode;
 
         lastNode->next = newNode;
+
+        _size++;
     }
 
     void deleteNode(Node *toDelete)
@@ -114,6 +121,8 @@ public:
         }
 
         delete toDelete;
+
+        _size--;
     }
 
     void deleteFirstNode()
@@ -127,6 +136,8 @@ public:
             head->prev = nullptr;
 
         delete temp;
+
+        _size--;
     }
 
     void deleteLastNode()
@@ -144,11 +155,35 @@ public:
         {
             head = nullptr;
             delete lastNode;
+            _size--;
             return;
         }
 
         lastNode->prev->next = nullptr;
         delete lastNode;
+
+        _size--;
+    }
+
+    // Big O(n)
+    /*
+    int _size()
+    {
+        Node *temp = head;
+        int counter = 0;
+        while (temp != nullptr)
+        {
+            counter++;
+            temp = temp->next;
+        }
+        return counter;
+    }
+    */
+
+    // Big O(1) by using _size value
+    int size()
+    {
+        return _size;
     }
 
     void printList()
