@@ -100,11 +100,7 @@ public:
 
         if (toDelete == head)
         {
-            head = head->next;
-            if (head != nullptr)
-                head->prev = nullptr;
-            delete toDelete;
-            return;
+            head = toDelete->next;
         }
 
         if (toDelete->prev != nullptr)
