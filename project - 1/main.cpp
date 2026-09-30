@@ -48,9 +48,18 @@ int main()
         cout << "\nyes it is empty\n";
     else
         cout << "\nno it is not empty\n";
-    
+
+    cout << "\nBefore reverse: ";
+    myDblLinkedList.printList();
+
+    myDblLinkedList.reverse();
+
+    cout << "After reverse : ";
+    myDblLinkedList.printList();
+
     cout << "\nBefore clearing: " << myDblLinkedList.size() << endl;
     myDblLinkedList.clear();
     cout << "after clearing: " << myDblLinkedList.size() << endl;
+
     return 0;
 }

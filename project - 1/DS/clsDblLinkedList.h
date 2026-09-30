@@ -192,6 +192,26 @@ public:
             deleteFirstNode();
     }
 
+    void reverse()
+    {
+        if (head == nullptr || head->next == nullptr)
+            return;
+
+        Node *temp = nullptr;
+        Node *current = head;
+
+        while(current != nullptr)
+        {
+            temp = current->prev;
+            current->prev = current->next;
+            current->next = temp;
+
+            current = current->prev;
+        }
+
+        head = temp->prev;
+    }
+
     void printList()
     {
         if (head == nullptr)
