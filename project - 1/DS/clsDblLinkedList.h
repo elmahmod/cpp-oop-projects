@@ -186,6 +186,11 @@ public:
         return _size;
     }
 
+    bool isEmpty()
+    {
+        return head == nullptr;
+    }
+
     void printList()
     {
         if (head == nullptr)
@@ -199,4 +204,6 @@ public:
         }
         cout << endl;
     }
+
+    
 };

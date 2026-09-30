@@ -43,5 +43,11 @@ int main()
     myDblLinkedList.printList();
 
     cout << "\nSize: " << myDblLinkedList.size() << endl;
+
+    if (myDblLinkedList.isEmpty())
+        cout << "\nyes it is empty\n";
+    else
+        cout << "\nno it is not empty\n";
+        
     return 0;
 }
