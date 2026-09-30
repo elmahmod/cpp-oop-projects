@@ -21,12 +21,7 @@ private:
 public:
     ~clsDbLinkedList()
     {
-        while (head != nullptr)
-        {
-            Node *temp = head;
-            head = head->next;
-            delete temp;
-        }
+        clear();
     }
 
     void insertAtBeginning(T value)
@@ -191,6 +186,12 @@ public:
         return head == nullptr;
     }
 
+    void clear()
+    {
+        while (!isEmpty())
+            deleteFirstNode();
+    }
+
     void printList()
     {
         if (head == nullptr)
@@ -204,6 +205,4 @@ public:
         }
         cout << endl;
     }
-
-    
 };
