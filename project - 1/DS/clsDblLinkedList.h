@@ -70,6 +70,15 @@ public:
         _size++;
     }
 
+    void insertAfter(int index, T value)
+    {
+        Node *n = getNode(index);
+        if (n == nullptr)
+            return;
+        
+        insertAfter(n, value);
+    }
+
     void insertAtEnd(T value)
     {
         if (head == nullptr)
@@ -238,6 +247,16 @@ public:
         if (n == nullptr)
             return T{};
         return n->value;
+    }
+
+    bool updateItem(int index, T value)
+    {
+        Node *n = getNode(index);
+        if (n == nullptr)
+            return false;
+
+        n->value = value;
+        return true;
     }
 
     void printList()
