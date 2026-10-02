@@ -4,36 +4,39 @@
 using namespace std;
 
 template <class T>
-class clsQueue : protected clsDbLinkedList<T>
+class clsQueue
 {
+protected:
+    clsDbLinkedList<T> _myList;
+
 public:
     void print()
     {
-        this->printList();
+        _myList.printList();
     }
 
     void push(T value)
     {
-        this->insertAtEnd(value);
+        _myList.insertAtEnd(value);
     }
 
     void pop()
     {
-        this->deleteFirstNode();
+        _myList.deleteFirstNode();
     }
 
     int size()
     {
-        return clsDbLinkedList<T>::size();
+        return _myList.size();
     }
 
     T front()
     {
-        return this->getItem(0);
+        return _myList.getItem(0);
     }
 
     T back()
     {
-        return this->getItem(clsDbLinkedList<T>::size() - 1);
+        return _myList.getItem(_myList.size() - 1);
     }
 };
