@@ -200,7 +200,7 @@ public:
         Node *temp = nullptr;
         Node *current = head;
 
-        while(current != nullptr)
+        while (current != nullptr)
         {
             temp = current->prev;
             current->prev = current->next;
@@ -210,6 +210,34 @@ public:
         }
 
         head = temp->prev;
+    }
+
+    Node *getNode(int index)
+    {
+        if (index < 0 || index >= _size)
+            return nullptr;
+
+        int counter = 0;
+        Node *temp = head;
+
+        while (temp != nullptr)
+        {
+            if (index == counter)
+                break;
+
+            counter++;
+            temp = temp->next;
+        }
+
+        return temp;
+    }
+
+    T getItem(int index)
+    {
+        Node *n = getNode(index);
+        if (n == nullptr)
+            return T{};
+        return n->value;
     }
 
     void printList()

@@ -57,6 +57,15 @@ int main()
     cout << "After reverse : ";
     myDblLinkedList.printList();
 
+    n1 = myDblLinkedList.getNode(1);
+    if (n1 != nullptr)
+    {
+        cout << "\nNode found by its index.\n";
+        cout << "Node value -> " << n1->value << endl;
+    }
+
+    cout << "\nItem(2) value is: " << myDblLinkedList.getItem(2) << endl;
+
     cout << "\nBefore clearing: " << myDblLinkedList.size() << endl;
     myDblLinkedList.clear();
     cout << "after clearing: " << myDblLinkedList.size() << endl;
