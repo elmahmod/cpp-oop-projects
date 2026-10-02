@@ -39,4 +39,9 @@ public:
     {
         return _myList.getItem(_myList.size() - 1);
     }
+
+    bool isEmpty()
+    {
+        return _myList.isEmpty();
+    }
 };
