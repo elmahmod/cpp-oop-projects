@@ -44,4 +44,39 @@ public:
     {
         return _myList.isEmpty();
     }
+
+    T getItem(int index)
+    {
+        return _myList.getItem(index);
+    }
+
+    void reverse()
+    {
+        _myList.reverse();
+    }
+
+    void updateItem(int index, T value)
+    {
+        _myList.updateItem(index, value);
+    }
+
+    void insertAfter(int index, T value)
+    {
+        _myList.insertAfter(index, value);
+    }
+
+    void insertAtFront(T value)
+    {
+        _myList.insertAtBeginning(value);
+    }
+
+    void insertAtEnd(T value)
+    {
+        _myList.insertAtEnd(value);
+    }
+
+    void clear()
+    {
+        _myList.clear();
+    }
 };
