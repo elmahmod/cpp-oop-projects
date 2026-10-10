@@ -7,6 +7,7 @@ class clsDynamicArray
 {
 protected:
     T *orgArray = nullptr;
+    T *_tempArray = nullptr;
     int _size = 0;
 
 public:
@@ -16,7 +17,7 @@ public:
             size = 0;
 
         _size = size;
-        orgArray = new T[_size];
+        orgArray = new T[_size]{};
     }
 
     ~clsDynamicArray()
@@ -50,5 +51,25 @@ public:
             cout << orgArray[i] << " ";
         }
         cout << "\n";
+    }
+
+    void resize(int size)
+    {
+        if (size < 0)
+            size = 0;
+
+        _tempArray = new T[size]{};
+
+        int elementsToCopy = std::min(_size, size);
+
+        for (int i = 0; i < elementsToCopy; i++)
+        {
+            _tempArray[i] = orgArray[i];
+        }
+
+        delete[] orgArray;
+
+        orgArray = _tempArray;
+        _size = size;
     }
 };
