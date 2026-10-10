@@ -34,6 +34,13 @@ public:
         return true;
     }
 
+    T getItem(int index)
+    {
+        if (index < 0 || index >= _size)
+            return T{};
+        return orgArray[index];
+    }
+
     bool isEmpty()
     {
         return _size == 0;
@@ -46,6 +53,9 @@ public:
 
     void printList()
     {
+        if (orgArray == nullptr)
+            return;
+
         for (int i = 0; i < _size; i++)
         {
             cout << orgArray[i] << " ";
@@ -71,5 +81,44 @@ public:
 
         orgArray = _tempArray;
         _size = size;
+    }
+
+    void reverse()
+    {
+        if (_size == 0 || _size == 1)
+            return;
+
+        _tempArray = new T[_size];
+
+        for (int i = 0; i < _size; i++)
+        {
+            _tempArray[i] = orgArray[_size - 1 - i];
+        }
+
+        delete[] orgArray;
+        orgArray = _tempArray;
+    }
+
+    // void reverse()
+    // {
+    //     if (_size <= 1)
+    //         return;
+
+    //     for (int i = 0; i < _size / 2; i++)
+    //     {
+    //         T temp = orgArray[i];
+
+    //         orgArray[i] = orgArray[_size - 1 - i];
+
+    //         orgArray[_size - 1 - i] = temp;
+    //     }
+    // }
+
+    void clear()
+    {
+        _size = 0;
+        _tempArray = new T[0];
+        delete[] orgArray;
+        orgArray = _tempArray;
     }
 };

@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-    clsDynamicArray<int> myDynamicArray(5);
+    clsDynamicArray<float> myDynamicArray(5);
 
     cout << "\n===== Initial Dynamic Array =====\n";
 
@@ -20,27 +20,41 @@ int main()
     cout << "\n===== Array Information =====\n";
     cout << "Size    : " << myDynamicArray.size() << endl;
     cout << "Is Empty: " << boolalpha
-         << myDynamicArray.isEmpty() << endl;
-
-    cout << "\n===== Resize to 2 =====\n";
-    myDynamicArray.resize(2);
-
+    << myDynamicArray.isEmpty() << endl;
+    
+    cout << "\n===== Resize to 4 =====\n";
+    myDynamicArray.resize(4);
+    
     cout << "Array: ";
     myDynamicArray.printList();
     cout << "Size : " << myDynamicArray.size() << endl;
-
-    cout << "\n===== Resize to 10 =====\n";
-    myDynamicArray.resize(10);
-
-    cout << "Array: ";
+    
+    // cout << "\n===== Resize to 10 =====\n";
+    // myDynamicArray.resize(10);
+    
+    // cout << "Array: ";
+    // myDynamicArray.printList();
+    // cout << "Size : " << myDynamicArray.size() << endl;
+    
+    // cout << "\n===== Resize to 0 =====\n";
+    // myDynamicArray.resize(0);
+    
+    // cout << "Size    : " << myDynamicArray.size() << endl;
+    // cout << "Is Empty: " << boolalpha
+    //      << myDynamicArray.isEmpty() << endl;
+    
+    cout << "\n==== Reverse ====\n";
+    cout << "Before: ";
     myDynamicArray.printList();
-    cout << "Size : " << myDynamicArray.size() << endl;
-
-    cout << "\n===== Resize to 0 =====\n";
-    myDynamicArray.resize(0);
-
+    
+    myDynamicArray.reverse();
+    
+    cout << "After: ";
+    myDynamicArray.printList();
+    
+    
+    myDynamicArray.clear(); 
+    myDynamicArray.printList();
     cout << "Size    : " << myDynamicArray.size() << endl;
-    cout << "Is Empty: " << boolalpha
-         << myDynamicArray.isEmpty() << endl;
     return 0;
 }
