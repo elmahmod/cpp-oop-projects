@@ -170,4 +170,51 @@ public:
         _size = newSize;
         return true;
     }
+
+    // bool deleteFirstItem()
+    // {
+    //     if (_size == 0)
+    //         return false;
+    //     int newSize = _size - 1;
+    //     _tempArray = new T[newSize];
+
+    //     for (int i = 0; i < newSize; i++)
+    //     {
+    //         _tempArray[i] = orgArray[i + 1];
+    //     }
+
+    //     delete[] orgArray;
+    //     orgArray = _tempArray;
+    //     _size = newSize;
+    //     return true;
+    // }
+
+    // bool deleteLastItem()
+    // {
+    //     if (_size == 0)
+    //         return false;
+
+    //     int newSize = _size - 1;
+    //     _tempArray = new T[newSize];
+
+    //     for (int i = 0; i < newSize; i++)
+    //     {
+    //         _tempArray[i] = orgArray[i];
+    //     }
+
+    //     delete[] orgArray;
+    //     orgArray = _tempArray;
+    //     _size = newSize;
+    //     return true;
+    // }
+
+    bool deleteFirstItem()
+    {
+        return deleteItemAt(0);
+    }
+
+    bool deleteLastItem()
+    {
+        return deleteItemAt(_size - 1);
+    }
 };

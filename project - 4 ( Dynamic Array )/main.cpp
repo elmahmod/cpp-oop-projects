@@ -66,6 +66,22 @@ int main()
     cout << "After: ";
     myDynamicArray.printList();
     
-    
+    cout << "\n==== Delete First Item ====\n";
+    cout << "Before: ";
+    myDynamicArray.printList();
+
+    myDynamicArray.deleteFirstItem();
+
+    cout << "After: ";
+    myDynamicArray.printList();
+
+        cout << "\n==== Delete Last Item ====\n";
+    cout << "Before: ";
+    myDynamicArray.printList();
+
+    myDynamicArray.deleteLastItem();
+
+    cout << "After: ";
+    myDynamicArray.printList();
     return 0;
 }
