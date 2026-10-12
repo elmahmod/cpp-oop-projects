@@ -117,8 +117,57 @@ public:
     void clear()
     {
         _size = 0;
-        _tempArray = new T[0];
+        delete[] orgArray;
+        orgArray = nullptr;
+    }
+
+    // void deleteItemAt(int index)
+    // {
+    //     if (index < 0 || index >= _size)
+    //         return;
+
+    //     _tempArray = new T[_size - 1];
+
+    //     int elementsToCopy = 0;
+
+    //     for (int i = 0; i < _size; i++)
+    //     {
+    //         if (index == i)
+    //             continue;
+
+    //         _tempArray[elementsToCopy] = orgArray[i];
+    //         elementsToCopy++;
+    //     }
+
+    //     _size -= 1;
+    //     delete[] orgArray;
+    //     orgArray = _tempArray;
+    // }
+
+    bool deleteItemAt(int index)
+    {
+        if (index < 0 || index >= _size)
+            return false;
+
+        int newSize = _size - 1;
+
+        _tempArray = new T[newSize];
+
+        // copy before index
+        for (int i = 0; i < index; i++)
+        {
+            _tempArray[i] = orgArray[i];
+        }
+
+        // copy after index;
+        for (int i = index; i < newSize; i++)
+        {
+            _tempArray[i] = orgArray[i + 1];
+        }
+
         delete[] orgArray;
         orgArray = _tempArray;
+        _size = newSize;
+        return true;
     }
 };

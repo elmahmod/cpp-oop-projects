@@ -52,9 +52,20 @@ int main()
     cout << "After: ";
     myDynamicArray.printList();
     
-    
-    myDynamicArray.clear(); 
+    // cout << "\n==== Clear ====\n";
+    // myDynamicArray.clear(); 
+    // myDynamicArray.printList();
+    // cout << "Size    : " << myDynamicArray.size() << endl;
+
+    cout << "\n==== Delete Item At[2] ====\n";
+    cout << "Before: ";
     myDynamicArray.printList();
-    cout << "Size    : " << myDynamicArray.size() << endl;
+
+    myDynamicArray.deleteItemAt(2);
+
+    cout << "After: ";
+    myDynamicArray.printList();
+    
+    
     return 0;
 }
