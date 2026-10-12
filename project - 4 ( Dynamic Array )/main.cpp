@@ -20,40 +20,40 @@ int main()
     cout << "\n===== Array Information =====\n";
     cout << "Size    : " << myDynamicArray.size() << endl;
     cout << "Is Empty: " << boolalpha
-    << myDynamicArray.isEmpty() << endl;
-    
+         << myDynamicArray.isEmpty() << endl;
+
     cout << "\n===== Resize to 4 =====\n";
     myDynamicArray.resize(4);
-    
+
     cout << "Array: ";
     myDynamicArray.printList();
     cout << "Size : " << myDynamicArray.size() << endl;
-    
+
     // cout << "\n===== Resize to 10 =====\n";
     // myDynamicArray.resize(10);
-    
+
     // cout << "Array: ";
     // myDynamicArray.printList();
     // cout << "Size : " << myDynamicArray.size() << endl;
-    
+
     // cout << "\n===== Resize to 0 =====\n";
     // myDynamicArray.resize(0);
-    
+
     // cout << "Size    : " << myDynamicArray.size() << endl;
     // cout << "Is Empty: " << boolalpha
     //      << myDynamicArray.isEmpty() << endl;
-    
+
     cout << "\n==== Reverse ====\n";
     cout << "Before: ";
     myDynamicArray.printList();
-    
+
     myDynamicArray.reverse();
-    
+
     cout << "After: ";
     myDynamicArray.printList();
-    
+
     // cout << "\n==== Clear ====\n";
-    // myDynamicArray.clear(); 
+    // myDynamicArray.clear();
     // myDynamicArray.printList();
     // cout << "Size    : " << myDynamicArray.size() << endl;
 
@@ -65,23 +65,65 @@ int main()
 
     cout << "After: ";
     myDynamicArray.printList();
-    
-    cout << "\n==== Delete First Item ====\n";
+
+    // cout << "\n==== Delete First Item ====\n";
+    // cout << "Before: ";
+    // myDynamicArray.printList();
+
+    // myDynamicArray.deleteFirstItem();
+
+    // cout << "After: ";
+    // myDynamicArray.printList();
+
+    // cout << "\n==== Delete Last Item ====\n";
+    // cout << "Before: ";
+    // myDynamicArray.printList();
+
+    // myDynamicArray.deleteLastItem();
+
+    // cout << "After: ";
+    // myDynamicArray.printList();
+
+    cout << "\n==== Find Item ====\n";
+    cout << "Array: ";
+    myDynamicArray.printList();
+
+    int index = myDynamicArray.find(30);
+
+    if (index == -1)
+        cout << "Item 30 not found!" << endl;
+    else
+        cout << "Item 30 found at index: " << index << endl;
+
+        
+    index = myDynamicArray.find(100);
+
+    if (index == -1)
+        cout << "Item 100 not found!" << endl;
+    else
+        cout << "Item 100 found at index: " << index << endl;
+
+
+    cout << "\n==== Delete Item (30) ====\n";
     cout << "Before: ";
     myDynamicArray.printList();
 
-    myDynamicArray.deleteFirstItem();
+    bool isDeleted = myDynamicArray.deleteItem(30);
+    cout << "Deleted: " << boolalpha << isDeleted << endl;
 
     cout << "After: ";
     myDynamicArray.printList();
 
-        cout << "\n==== Delete Last Item ====\n";
+
+    cout << "\n==== Delete Item (100) ====\n";
     cout << "Before: ";
     myDynamicArray.printList();
 
-    myDynamicArray.deleteLastItem();
+    isDeleted = myDynamicArray.deleteItem(100);
+    cout << "Deleted: " << boolalpha << isDeleted << endl;
 
     cout << "After: ";
     myDynamicArray.printList();
+
     return 0;
 }

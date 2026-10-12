@@ -217,4 +217,20 @@ public:
     {
         return deleteItemAt(_size - 1);
     }
+
+    int find(T item)
+    {
+        for (int i = 0; i < _size; i++)
+        {
+            if (item == orgArray[i])
+                return i;
+        }
+        return -1;
+    }
+
+    bool deleteItem(T item)
+    {
+        int indexOfItem = find(item);
+        return deleteItemAt(indexOfItem);
+    }
 };
