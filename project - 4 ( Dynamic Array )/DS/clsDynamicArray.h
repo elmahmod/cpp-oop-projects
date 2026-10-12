@@ -218,19 +218,75 @@ public:
         return deleteItemAt(_size - 1);
     }
 
-    int find(T item)
+    int find(T value)
     {
         for (int i = 0; i < _size; i++)
         {
-            if (item == orgArray[i])
+            if (value == orgArray[i])
                 return i;
         }
         return -1;
     }
 
-    bool deleteItem(T item)
+    bool deleteItem(T value)
     {
-        int indexOfItem = find(item);
+        int indexOfItem = find(value);
         return deleteItemAt(indexOfItem);
+    }
+
+    bool insertAt(int index, T value)
+    {
+        if (index < 0 || index > _size)
+            return false;
+
+        int newSize = _size + 1;
+
+        _tempArray = new T[newSize];
+
+        // copy before
+        for (int i = 0; i < index; i++)
+        {
+            _tempArray[i] = orgArray[i];
+        }
+
+        // insert at the index
+        _tempArray[index] = value;
+
+        // copy from the orginal index
+        for (int i = index + 1; i < newSize; i++)
+        {
+            _tempArray[i] = orgArray[i - 1];
+        }
+
+        delete[] orgArray;
+        orgArray = _tempArray;
+        _size = newSize;
+        return true;
+    }
+
+    bool insertAtBeginning(T value)
+    {
+        return insertAt(0, value);
+    }
+
+    bool insertAtEnd(T value)
+    {
+        return insertAt(_size, value);
+    }
+
+    bool insertBefore(int index, T value)
+    {
+        if (index >= _size)
+            return false;
+
+        return insertAt(index - 1, value);
+    }
+
+    bool insertAfter(int index, T value)
+    {
+        if (index >= _size)
+            return false;
+
+        return insertAt(index + 1, value);
     }
 };

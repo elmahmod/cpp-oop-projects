@@ -84,46 +84,99 @@ int main()
     // cout << "After: ";
     // myDynamicArray.printList();
 
-    cout << "\n==== Find Item ====\n";
+    // cout << "\n==== Find Item ====\n";
+    // cout << "Array: ";
+    // myDynamicArray.printList();
+
+    // int index = myDynamicArray.find(30);
+
+    // if (index == -1)
+    //     cout << "Item 30 not found!" << endl;
+    // else
+    //     cout << "Item 30 found at index: " << index << endl;
+
+    // index = myDynamicArray.find(100);
+
+    // if (index == -1)
+    //     cout << "Item 100 not found!" << endl;
+    // else
+    //     cout << "Item 100 found at index: " << index << endl;
+
+    // cout << "\n==== Delete Item (30) ====\n";
+    // cout << "Before: ";
+    // myDynamicArray.printList();
+
+    // bool isDeleted = myDynamicArray.deleteItem(30);
+    // cout << "Deleted: " << boolalpha << isDeleted << endl;
+
+    // cout << "After: ";
+    // myDynamicArray.printList();
+
+    // cout << "\n==== Delete Item (100) ====\n";
+    // cout << "Before: ";
+    // myDynamicArray.printList();
+
+    // isDeleted = myDynamicArray.deleteItem(100);
+    // cout << "Deleted: " << boolalpha << isDeleted << endl;
+
+    // cout << "After: ";
+    // myDynamicArray.printList();
+
+    cout << "\n==== Insert Item At[2] ====\n";
+    cout << "Before: ";
+    myDynamicArray.printList();
+
+    bool isInserted = myDynamicArray.insertAt(2, 60);
+    cout << "Inserted: " << boolalpha << isInserted << endl;
+
+    cout << "After: ";
+    myDynamicArray.printList();
+
+    cout << "\n==== Insert At Beginning (5) ====\n";
+    cout << "Before: ";
+    myDynamicArray.printList();
+
+    isInserted = myDynamicArray.insertAtBeginning(5);
+    cout << "Inserted: " << boolalpha << isInserted << endl;
+
+    cout << "After: ";
+    myDynamicArray.printList();
+
+    cout << "\n==== Insert At End (70) ====\n";
+    cout << "Before: ";
+    myDynamicArray.printList();
+
+    isInserted = myDynamicArray.insertAtEnd(70);
+    cout << "Inserted: " << boolalpha << isInserted << endl;
+
+    cout << "After: ";
+    myDynamicArray.printList();
+
+    cout << "\n==== Insert Before Index[2] (25) ====\n";
+    cout << "Before: ";
+    myDynamicArray.printList();
+
+    isInserted = myDynamicArray.insertBefore(2, 25);
+    cout << "Inserted: " << boolalpha << isInserted << endl;
+
+    cout << "After: ";
+    myDynamicArray.printList();
+
+    cout << "\n==== Insert After Index[3] (35) ====\n";
+    cout << "Before: ";
+    myDynamicArray.printList();
+
+    isInserted = myDynamicArray.insertAfter(3, 35);
+    cout << "Inserted: " << boolalpha << isInserted << endl;
+
+    cout << "After: ";
+    myDynamicArray.printList();
+
+    cout << "\n===== Final Array Information =====\n";
     cout << "Array: ";
     myDynamicArray.printList();
-
-    int index = myDynamicArray.find(30);
-
-    if (index == -1)
-        cout << "Item 30 not found!" << endl;
-    else
-        cout << "Item 30 found at index: " << index << endl;
-
-        
-    index = myDynamicArray.find(100);
-
-    if (index == -1)
-        cout << "Item 100 not found!" << endl;
-    else
-        cout << "Item 100 found at index: " << index << endl;
-
-
-    cout << "\n==== Delete Item (30) ====\n";
-    cout << "Before: ";
-    myDynamicArray.printList();
-
-    bool isDeleted = myDynamicArray.deleteItem(30);
-    cout << "Deleted: " << boolalpha << isDeleted << endl;
-
-    cout << "After: ";
-    myDynamicArray.printList();
-
-
-    cout << "\n==== Delete Item (100) ====\n";
-    cout << "Before: ";
-    myDynamicArray.printList();
-
-    isDeleted = myDynamicArray.deleteItem(100);
-    cout << "Deleted: " << boolalpha << isDeleted << endl;
-
-    cout << "After: ";
-    myDynamicArray.printList();
+    cout << "Size    : " << myDynamicArray.size() << endl;
+    cout << "Is Empty: " << boolalpha << myDynamicArray.isEmpty() << endl;
 
     return 0;
 }
