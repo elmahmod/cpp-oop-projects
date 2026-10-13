@@ -8,9 +8,11 @@ class clsString
 private:
     stack<string> _redo;
     stack<string> _undo;
-    string _value = "o";
+    string _value;
 
 public:
+    
+
     void setValue(string value)
     {
         _undo.push(_value);
